@@ -125,11 +125,11 @@ class Tic_tac_toe {
         return occupied;
     }
 
-    public static void printTextandFillGrind(String[][] grid, int player, Scanner input)
+    public static boolean printTextandFillGrind(String[][] grid, int player, Scanner input)
     {
         String value;
         int row ;
-        int col ; 
+        int col ;
 
         if (player == 1)
             value = "X";
@@ -153,9 +153,10 @@ class Tic_tac_toe {
             if (checkWin(grid, player))
             {
                 System.out.println("Player "+value+" has won!");
-                return ;
+                return true;
             }
         }
+        return false;
     }
 
     public static void promting(Scanner input, String[][] grid) 
@@ -163,12 +164,14 @@ class Tic_tac_toe {
         while (true)
         {
             if (player == 1) {
-                printTextandFillGrind(grid, player, input);
+                if (printTextandFillGrind(grid, player, input))
+                    return ;
                 player = 2;
             }
             else if (player == 2)
             {
-                printTextandFillGrind(grid, player, input);
+                if (printTextandFillGrind(grid, player, input))
+                    return ;
                 player = 1;
             }
             else {
