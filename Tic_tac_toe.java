@@ -125,57 +125,50 @@ class Tic_tac_toe {
         return occupied;
     }
 
-    public static void promting(Scanner input, String[][] grid) 
+    public static void printTextandFillGrind(String[][] grid, int player, Scanner input)
     {
+        String value;
         int row ;
         int col ; 
+
+        if (player == 1)
+            value = "X";
+        else
+            value = "O";
+
+        System.out.println("Player "+value+", please enter a row (0, 1 or 2): ");
+        row = input.nextInt();
+        System.out.println("Player "+value+", please enter a column (0, 1 or 2): ");
+        col = input.nextInt();
+        
+        if (row > 2 || col > 2)
+            System.out.println("Your choice is out of range!\nYou've lost your move");
+        else if (row < 0 || col < 0)
+            System.out.println("Your choice is out of range!\nYou've lost your move");
+        else if (checkCellIfOccupied(grid, player, row, col) == true)
+            System.out.println("Cell is occupied\nYou've lost your move");
+        else
+        {
+            grid = fillGrid(row, col, grid, player);
+            if (checkWin(grid, player))
+            {
+                System.out.println("Player "+value+" has won!");
+                return ;
+            }
+        }
+    }
+
+    public static void promting(Scanner input, String[][] grid) 
+    {
         while (true)
         {
             if (player == 1) {
-                System.out.println("Player X, please enter a row (0, 1 or 2): ");
-                row = input.nextInt();
-                System.out.println("Player X, please enter a column (0, 1 or 2): ");
-                col = input.nextInt();
-                
-                if (row > 2 || col > 2)
-                    System.out.println("Your choice is out of range!\nYou've lost your move");
-                else if (row < 0 || col < 0)
-                    System.out.println("Your choice is out of range!\nYou've lost your move");
-                else if (checkCellIfOccupied(grid, player, row, col) == true)
-                    System.out.println("Cell is occupied\nYou've lost your move");
-                else
-                {
-                    grid = fillGrid(row, col, grid, player);
-                    if (checkWin(grid, player))
-                    {
-                        System.out.println("Player X has won!");
-                        return ;
-                    }
-                }
+                printTextandFillGrind(grid, player, input);
                 player = 2;
             }
             else if (player == 2)
             {
-                System.out.println("Player O, please enter a row (0, 1 or 2): ");
-                row = input.nextInt();
-                System.out.println("Player O, please enter a column (0, 1 or 2): ");
-                col = input.nextInt();
-
-                if (row > 2 || col > 2)
-                    System.out.println("Your choice is out of range!\nYou've lost your move");
-                else if (row < 0 || col < 0)
-                    System.out.println("Your choice is out of range!\nYou've lost your move");
-                else if (checkCellIfOccupied(grid, player, row, col))
-                    System.out.println("Cell is occupied\nYou've lost your move");
-                else
-                {
-                    grid = fillGrid(row, col, grid, player);
-                    if (checkWin(grid, player))
-                    {
-                        System.out.println("Player O has won!");
-                        return ;
-                    }
-                }
+                printTextandFillGrind(grid, player, input);
                 player = 1;
             }
             else {
