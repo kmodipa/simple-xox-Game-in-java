@@ -1,2 +1,2 @@
 # simple-xox-Game-in-java
-Just a simple xox game in java that's all
+Just a simple console xox game in java that's all
