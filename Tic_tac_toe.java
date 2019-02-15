@@ -118,14 +118,8 @@ class Tic_tac_toe {
     {
         boolean occupied = false;
 
-        String compare;
-
-        if (player == 1)
-            compare = "X";
-        else
-            compare = "O";
-
-        if (grid[row][col].equals(compare))
+        System.out.println(grid[row][col]);
+        if (grid[row][col].equals("X") || grid[row][col].equals("O"))
             occupied = true;
 
         return occupied;
@@ -147,7 +141,7 @@ class Tic_tac_toe {
                     System.out.println("Your choice is out of range!\nYou've lost your move");
                 else if (row < 0 || col < 0)
                     System.out.println("Your choice is out of range!\nYou've lost your move");
-                else if (checkCellIfOccupied(grid, player, row, col))
+                else if (checkCellIfOccupied(grid, player, row, col) == true)
                     System.out.println("Cell is occupied\nYou've lost your move");
                 else
                 {
